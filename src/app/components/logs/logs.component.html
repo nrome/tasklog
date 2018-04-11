@@ -1,24 +1,13 @@
 <ul class="list-group">
-  <li class="list-group-item row d-flex justify-content-between align-items-center">
+  <li *ngFor="let log of logs" class="list-group-item row d-flex justify-content-between align-items-center">
         <div class="col-3">
-          <a href="#">Generated Components</a>
+          <a href="#">{{ log.text }}</a>
         </div>
         <div class="col-6">
-          <span class="log-date">04/11/2018</span>
+          <span class="log-date">{{ log.date | date: 'M/d/yy @ h:mm a' }}</span>
         </div>
         <div class="col-3 text-right">
           <i class="fa fa-remove"></i>
         </div>
   </li>
-  <li class="list-group-item row d-flex justify-content-between align-items-center">
-      <div class="col-3">
-        <a href="#">Customized List Group</a>
-      </div>
-      <div class="col-6">
-        <span class="log-date">04/11/2018</span>
-      </div>
-      <div class="col-3 text-right">
-        <i class="fa fa-remove"></i>
-      </div>
-</li>
 </ul>
