@@ -14,18 +14,29 @@ export class LogsComponent implements OnInit {
 
   // define properties
   logs: Log[];
+  selectedLog: Log;
+  loaded: boolean = false;
 
   constructor(private logService: LogService) { }
 
   ngOnInit() {
+    this.logService.stateClear.subscribe(clear => {
+      if(clear) {
+        this.selectedLog = {id: '', text: '', date: ''};
+      }
+    });
+
+    // get logs
     this.logService.getLogs().subscribe(logs => {
       this.logs = logs;
+      // initially set to true
+      this.loaded = true;
     });
   }
 
   onSelect(log: Log) {
-    console.log(log);
     this.logService.setFormLog(log);
+    this.selectedLog = log;
   }
 
   onDelete(log: Log) {
@@ -33,5 +44,5 @@ export class LogsComponent implements OnInit {
       this.logService.deleteLog(log);
     }
   }
-  
+
 }
